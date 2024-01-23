@@ -1,21 +1,30 @@
 created:
     - database/factories/PostFactory.php
-    - database/factories/RelationshipsFactory.php
     - database/factories/VideoFactory.php
     - database/factories/CommentFactory.php
-    - database/migrations/2024_01_23_183720_create_posts_table.php
-    - database/migrations/2024_01_23_183721_create_relationships_table.php
-    - database/migrations/2024_01_23_183722_create_videos_table.php
-    - database/migrations/2024_01_23_183723_create_comments_table.php
+    - database/factories/UserFactory.php
+    - database/factories/ImageFactory.php
+    - database/factories/TagFactory.php
+    - database/migrations/2024_01_23_210107_create_posts_table.php
+    - database/migrations/2024_01_23_210108_create_videos_table.php
+    - database/migrations/2024_01_23_210109_create_comments_table.php
+    - database/migrations/2024_01_23_210110_create_users_table.php
+    - database/migrations/2024_01_23_210111_create_images_table.php
+    - database/migrations/2024_01_23_210112_create_tags_table.php
+    - database/migrations/2024_01_23_210113_create_tagables_table.php
     - app/Models/Post.php
-    - app/Models/relationships.php
     - app/Models/Video.php
     - app/Models/Comment.php
+    - app/Models/User.php
+    - app/Models/Image.php
+    - app/Models/Tag.php
     - database/seeders/PostVideoSeeder.php
 models:
-    User: { name: string, email: string, password: string, country_id: id }
+    User: { name: string }
     Country: { name: string }
-    Post: { name: string }
+    Post: { name: string, relationships: { morphMany: Comment, morphOne: Image, morphToMany: Tag } }
     relationships: { morphMany: Comment }
-    Video: { name: string, relationships: { morphMany: Comment } }
-    Comment: { 'body:': string, relationships: { morphTo: Commentable } }
+    Video: { name: string, relationships: { morphMany: Comment, morphOne: Image, morphToMany: Tag } }
+    Comment: { body: string, relationships: { morphTo: Commentable } }
+    Image: { url: string, relationships: { morphTo: Imageable } }
+    Tag: { name: string, relationships: { morphedByMany: 'Post, Video' } }

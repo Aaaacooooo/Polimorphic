@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Comment;
+use App\Models\Image;
 
-class CommentFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Comment::class;
+    protected $model = Image::class;
 
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'body' => $this->faker->word(),
+            'url' => $this->faker->url(),
         ];
     }
 }

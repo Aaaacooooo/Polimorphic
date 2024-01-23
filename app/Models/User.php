@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Comment extends Model
+class User extends Model
 {
     use HasFactory;
 
@@ -16,7 +15,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'body',
+        'name',
     ];
 
     /**
@@ -27,9 +26,4 @@ class Comment extends Model
     protected $casts = [
         'id' => 'integer',
     ];
-
-    public function commentable(): MorphTo
-    {
-        return $this->morphTo();
-    }
 }

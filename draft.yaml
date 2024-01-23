@@ -2,18 +2,36 @@ models:
 
   Post:
     name: string
-  relationships:
+    relationships:
       morphMany: Comment
+      morphOne: Image
+      morphToMany: Tag
 
   Video:
     name: string
     relationships:
       morphMany: Comment
+      morphOne: Image
+      morphToMany: Tag
+
 
   Comment:
-    body:: string
+    body: string
     relationships:
       morphTo: Commentable
+  
+  User:
+    name: string
+
+  Image:
+    url: string
+    relationships:
+      morphTo: Imageable
+    
+  Tag:
+    name: string
+    relationships:
+      morphedByMany: Post, Video
 
 seeders:
   - Post

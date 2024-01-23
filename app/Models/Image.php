@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Relationships extends Model
+class Image extends Model
 {
     use HasFactory;
 
@@ -15,7 +16,7 @@ class Relationships extends Model
      * @var array
      */
     protected $fillable = [
-        'morphMany',
+        'url',
     ];
 
     /**
@@ -26,4 +27,9 @@ class Relationships extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    public function imageable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

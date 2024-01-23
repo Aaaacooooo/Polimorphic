@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-class Post extends Model
+class Tag extends Model
 {
     use HasFactory;
 
@@ -30,18 +28,13 @@ class Post extends Model
         'id' => 'integer',
     ];
 
-    public function comments(): MorphMany
+    public function posts(): MorphToMany
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphedByMany(Post::class, 'tagable');
     }
 
-    public function image(): MorphOne
+    public function videos(): MorphToMany
     {
-        return $this->morphOne(Image::class, 'imageable');
-    }
-
-    public function tags(): MorphToMany
-    {
-        return $this->morphToMany(Tag::class, 'tagable');
+        return $this->morphedByMany(Video::class, 'tagable');
     }
 }

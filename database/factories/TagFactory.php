@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\relationships;
+use App\Models\Tag;
 
-class RelationshipsFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Relationships::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class RelationshipsFactory extends Factory
     public function definition(): array
     {
         return [
-            'morphMany' => $this->faker->word(),
+            'name' => $this->faker->name(),
         ];
     }
 }
