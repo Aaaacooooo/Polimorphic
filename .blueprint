@@ -1,0 +1,21 @@
+created:
+    - database/factories/PostFactory.php
+    - database/factories/RelationshipsFactory.php
+    - database/factories/VideoFactory.php
+    - database/factories/CommentFactory.php
+    - database/migrations/2024_01_23_183720_create_posts_table.php
+    - database/migrations/2024_01_23_183721_create_relationships_table.php
+    - database/migrations/2024_01_23_183722_create_videos_table.php
+    - database/migrations/2024_01_23_183723_create_comments_table.php
+    - app/Models/Post.php
+    - app/Models/relationships.php
+    - app/Models/Video.php
+    - app/Models/Comment.php
+    - database/seeders/PostVideoSeeder.php
+models:
+    User: { name: string, email: string, password: string, country_id: id }
+    Country: { name: string }
+    Post: { name: string }
+    relationships: { morphMany: Comment }
+    Video: { name: string, relationships: { morphMany: Comment } }
+    Comment: { 'body:': string, relationships: { morphTo: Commentable } }

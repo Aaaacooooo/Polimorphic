@@ -1,0 +1,21 @@
+models:
+
+  Post:
+    name: string
+  relationships:
+      morphMany: Comment
+
+  Video:
+    name: string
+    relationships:
+      morphMany: Comment
+
+  Comment:
+    body:: string
+    relationships:
+      morphTo: Commentable
+
+seeders:
+  - Post
+  - Video
+
